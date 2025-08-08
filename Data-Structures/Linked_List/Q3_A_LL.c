@@ -108,13 +108,20 @@ void moveOddItemsToBack(LinkedList *ll)
 		if (currentNode->item % 2 != 0)
 		{
 			// 현재 노드가 홀수인 경우 : 노드를 제거하고 꼬리 노드 뒤에 추가
-			prevNode->next = currentNode->next;
+			if (prevNode == NULL)
+			{
+				ll->head = currentNode->next;
+			}
+			else
+			{
+				prevNode->next = currentNode->next;
+			}
 			tailNode->next = currentNode;
 			currentNode->next = NULL;
 			tailNode = currentNode;
 
 			// 현재 노드를 다음 노드로 이동
-			currentNode = prevNode->next;
+			currentNode = (prevNode == NULL) ? (ll->head) : (prevNode->next);
 		}
 		else
 		{
