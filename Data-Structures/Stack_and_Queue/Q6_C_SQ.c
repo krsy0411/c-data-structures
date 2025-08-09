@@ -111,7 +111,19 @@ int main()
 
 void removeUntil(Stack *s, int value)
 {
-/* add your code here */
+	// 의문) 왜 reverse로 스택에 누적되는거지?
+	while (1)
+	{
+		int item = peek(s);
+		if (item == MIN_INT || item == value)
+		{
+			break;
+		}
+		else
+		{
+			pop(s);
+		}
+	}
 }
 
 //////////////////////////////////////////////////////////////////////////////////
