@@ -84,7 +84,7 @@ int main()
 			scanf("%s", str);
 			break;
         case 2:
-            if(balanced(str))
+            if(!balanced(str))
                 printf("not balanced!\n");
             else
                 printf("balanced!\n");
@@ -102,9 +102,53 @@ int main()
 }
 
 ////////////////////////////////////////////////////////////
+
+// main함수에서 balanced 함수의 결과에 대해 균형인 경우 not balanced를 출력하도록 하고 있어서 이를 수정했음(87줄)
 int balanced(char *expression)
 {
-/* add your code here */
+	Stack s;
+	s.ll.head = NULL;
+	s.ll.size = 0;
+
+	while (*expression != '\0')
+	{
+		if (*expression == '(' || *expression == '[' || *expression == '{')
+		{
+			push(&s, *expression);
+		}
+		else if (*expression == ')')
+		{
+			if (isEmptyStack(&s) || peek(&s) != '(')
+			{
+				return 0;
+			}
+
+			pop(&s);
+		}
+		else if (*expression == ']')
+		{
+			if (isEmptyStack(&s) || peek(&s) != '[')
+			{
+				return 0;
+			}
+
+			pop(&s);
+		}
+		else if (*expression == '}')
+		{
+			if (isEmptyStack(&s) || peek(&s) != '{')
+			{
+				return 0;
+			}
+
+			pop(&s);
+		}
+
+		expression++;
+	}
+
+	// 여전히 비어있지 않다면 균형이 안 맞는 것
+	return isEmptyStack(&s) ? 1 : 0;
 }
 
 ////////////////////////////////////////////////////////////
