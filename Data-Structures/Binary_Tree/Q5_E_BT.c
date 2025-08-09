@@ -105,7 +105,15 @@ int main()
 
 void mirrorTree(BTNode *node)
 {
-	/* add your code here */
+	// 루트 노드에서 왼/오 서브 트리를 재귀적으로 뒤집으면 될 듯
+    if (node == NULL) return;
+
+    BTNode *tempNode = node->left;
+    node->left = node->right;
+    node->right = tempNode;
+
+    mirrorTree(node->left);
+    mirrorTree(node->right);
 }
 
 //////////////////////////////////////////////////////////////////////////////////
