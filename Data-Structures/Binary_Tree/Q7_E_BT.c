@@ -102,7 +102,13 @@ int main()
 
 int smallestValue(BTNode *node)
 {
-	/* add your code here */
+	if (node == NULL) return 999; // 비교할 값으로 큰 값(999) 반환
+
+    int leftSmallest = smallestValue(node->left);
+    int rightSmallest = smallestValue(node->right);
+
+    int smallest = (leftSmallest < rightSmallest) ? leftSmallest : rightSmallest;
+    return (node->item < smallest) ? node->item : smallest;
 }
 
 //////////////////////////////////////////////////////////////////////////////////
