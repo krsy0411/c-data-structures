@@ -105,7 +105,17 @@ int main()
 
 void printSmallerValues(BTNode *node, int m)
 {
-	/* add your code here */
+	// 기저 조건
+    if (node == NULL) return;
+
+    if (node->item < m)
+    {
+        printf("%d ", node->item);
+    }
+
+    // 서브트리 탐색
+    printSmallerValues(node->left, m);
+    printSmallerValues(node->right, m);
 }
 
 //////////////////////////////////////////////////////////////////////////////////
